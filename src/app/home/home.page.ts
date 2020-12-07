@@ -20,16 +20,16 @@ export class HomePage {
     this.carregarFilmes();
   }
 
-  async loading() {
-    const loading = await this.loadingController.create({
-      message: 'Carregando',
-      translucent: true,
-      showBackdrop: false,
-    });
+  // async loading() {
+  //   const loading = await this.loadingController.create({
+  //     message: 'Carregando',
+  //     translucent: true,
+  //     showBackdrop: false,
+  //   });
 
-    loading.present();
-    return loading;
-  }
+  //   loading.present();
+  //   return loading;
+  // }
 
   async mostrarToast(mensagem: string) {
     const toast = await this.toastController.create({
@@ -63,7 +63,7 @@ export class HomePage {
     * Tinha usado um negócio para mostrar que a página está carregando, no entanto
     * no entanto por carregar rápido ficou bem estranho
     */
-    this.loading().then((loading) => {
+    // this.loading().then((loading) => {
       this.filmeService.getMovies(this.pagina).subscribe((sucess: any) => {
         console.log(sucess);
         this.listaFilmes = sucess.results.map(rs => {
@@ -71,13 +71,13 @@ export class HomePage {
           return rs;
         });
         this.totalPages = sucess.total_pages;
-        loading.dismiss();
+        // loading.dismiss();
         document.querySelector('ion-content').scrollToTop(0);
       }, error => {
         console.log(error);
-        loading.dismiss();
+        // loading.dismiss();
       });
-      })
+      // });
     }
 
   formatFilmUrl(backdrop_path) {
