@@ -1,20 +1,28 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Filmes
-    </ion-title>
+    <ion-title> Filmes </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Filmes</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-card *ngFor="let film of listaFilmes">
+    <img *ngIf="film.backdrop_path" [src]="formatFilmUrl(film.backdrop_path)" />
+    <ion-card-header>
+      <ion-card-title>{{film.original_title}}</ion-card-title>
+      <ion-card-subtitle>{{film.release_date}}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content> {{film.overview}} </ion-card-content>
+  </ion-card>
 </ion-content>
+
+<ion-footer class="ion-no-border">
+  <div>
+    <ion-button (click)="anterior()">
+      <ion-icon name="chevron-back-outline"></ion-icon>
+    </ion-button>
+    <span> {{pagina}}/{{totalPages}} </span> <!--ESSA BAGAÇA NÃO ALINHAAAAA |╯°□°╯|︵ ┻━┻-->
+    <ion-button (click)="proximo()">
+      <ion-icon name="chevron-forward-outline"></ion-icon>
+    </ion-button>
+  </div>
+</ion-footer>
